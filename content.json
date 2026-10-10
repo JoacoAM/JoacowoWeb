@@ -1,0 +1,36 @@
+{
+  "site": { "title": "Mi Portfolio", "logo": "TU" },
+  "items": [
+    {
+      "title": "SOBRE MÍ",
+      "subtitle": "Quién soy y qué hago",
+      "description": ["Escribe aquí tu presentación. Cada texto de esta lista es un párrafo.", "Puedes añadir tantos párrafos como quieras."],
+      "images": [],
+      "links": [{ "label": "GitHub", "url": "https://github.com/" }]
+    },
+    {
+      "title": "PROYECTO 1",
+      "subtitle": "Tipo de proyecto · año",
+      "description": ["Describe el proyecto: objetivo, tu rol, herramientas."],
+      "images": [
+        { "src": "assets/placeholder.svg", "caption": "Pie de la imagen 1" },
+        { "src": "assets/placeholder.svg", "caption": "Pie de la imagen 2" }
+      ],
+      "links": [{ "label": "Ver proyecto", "url": "https://example.com" }]
+    },
+    {
+      "title": "PROYECTO 2",
+      "subtitle": "Tipo de proyecto · año",
+      "description": "También puedes poner la descripción como un solo texto.",
+      "images": [{ "src": "assets/placeholder.svg", "caption": "" }],
+      "links": []
+    },
+    {
+      "title": "CONTACTO",
+      "subtitle": "Hablemos",
+      "description": ["tu@correo.com"],
+      "images": [],
+      "links": [{ "label": "Escríbeme", "url": "mailto:tu@correo.com" }]
+    }
+  ]
+}
