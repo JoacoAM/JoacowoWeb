@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="bg"></div>
+<svg class="web" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+  <g class="c tl"><ellipse rx="520" ry="300"/><ellipse rx="760" ry="420"/><ellipse rx="1000" ry="640"/></g>
+  <g class="c tr"><ellipse rx="520" ry="300"/><ellipse rx="760" ry="420"/><ellipse rx="1000" ry="640"/></g>
+  <g class="c bl"><ellipse rx="520" ry="300"/><ellipse rx="760" ry="420"/><ellipse rx="1000" ry="640"/></g>
+  <g class="c br"><ellipse rx="520" ry="300"/><ellipse rx="760" ry="420"/><ellipse rx="1000" ry="640"/></g>
+</svg>
+<canvas id="motes" aria-hidden="true"></canvas>
+<div class="vignette"></div>
+<div class="frame"></div>
+<main id="stage">
+  <div class="orb-wrap">
+    <div class="ring r1"></div><div class="ring r2"></div><div class="ring r3"></div>
+    <div class="wisp w1"></div><div class="wisp w2"></div><div class="wisp w3"></div>
+    <div class="orb"><span id="orb-label"></span></div>
+  </div>
+  <nav id="menu" aria-label="Proyectos"></nav>
+  <section id="detail" hidden></section>
+  <div id="hint">
+    <button class="btn" id="btn-a" aria-label="Seleccionar">A</button><span>SELECCIONAR</span>
+    <button class="btn" id="btn-b" aria-label="Volver">B</button><span>VOLVER</span>
+  </div>
+</main>
+<div id="intro" aria-hidden="true"><div class="lottie"></div></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
