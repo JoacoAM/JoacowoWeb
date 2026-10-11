@@ -1,0 +1,62 @@
+/* fx.css — capa de efectos. Cargar DESPUÉS de style.css. No modifica style.css. */
+
+/* 1 · INTRO (arranque tipo consola) */
+.fx-intro{position:fixed;inset:0;z-index:100;background:#000;display:grid;place-items:center;animation:fx-intro 2s ease forwards}
+@keyframes fx-intro{0%,45%{opacity:1}100%{opacity:0;visibility:hidden}}
+.fx-line{width:min(60vw,720px);height:2px;background:linear-gradient(90deg,transparent,var(--glow),transparent);box-shadow:0 0 18px var(--glow);animation:fx-line .9s .2s cubic-bezier(.2,.8,.2,1) both}
+@keyframes fx-line{from{scale:0 1;opacity:0}}
+.fx-flare{position:absolute;width:30vmin;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,#faff8a 0,rgba(150,235,60,.6) 35%,transparent 70%);animation:fx-flare 1.1s .85s ease-out both}
+@keyframes fx-flare{from{scale:.1;opacity:0}40%{opacity:1}to{scale:6;opacity:0}}
+/* el orbe y el menú esperan a que termine la intro (solo si fx.js está activo) */
+body.fx-on:not(.booted) .orb-wrap,body.fx-on:not(.booted) .item{animation-play-state:paused!important}
+body.fx-on:not(.booted) .frame,body.fx-on:not(.booted) #hint{opacity:0}
+.frame{transition:opacity 1.6s .3s}
+#hint{transition:opacity 1s 1.4s}
+
+/* 2 · TRANSICIÓN DE PANELES */
+.fx-dim{position:fixed;inset:0;pointer-events:none;background:rgba(0,12,3,.45);backdrop-filter:blur(3px);opacity:0;transition:opacity .6s}
+body.detail-open .fx-dim{opacity:1}
+.fx-burst{position:fixed;inset:0;z-index:90;pointer-events:none;overflow:hidden}
+.fx-burst i{position:absolute;top:-10%;bottom:-10%;left:0;width:45vw;transform:translateX(-110%) skewX(-18deg);animation:fx-band .8s cubic-bezier(.7,0,.3,1) forwards}
+.fx-burst i:nth-child(1){background:rgba(207,220,28,.9)}
+.fx-burst i:nth-child(2){background:rgba(76,193,58,.85);animation-delay:.07s}
+.fx-burst i:nth-child(3){background:rgba(240,255,200,.7);animation-delay:.14s}
+@keyframes fx-band{to{transform:translateX(260%) skewX(-18deg)}}
+.fx-burst::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 50%,rgba(220,255,140,.55),transparent 55%);opacity:0;animation:fx-flash .7s ease-out}
+@keyframes fx-flash{30%{opacity:1}to{opacity:0}}
+.fx-lottie{position:fixed;inset:0;z-index:95;pointer-events:none}
+/* contenido del panel entra en cascada */
+#detail>*{animation:fx-rise .55s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(.3s + var(--k,0)*.07s)}
+#detail>:nth-child(2){--k:1}#detail>:nth-child(3){--k:2}#detail>:nth-child(4){--k:3}
+#detail>:nth-child(5){--k:4}#detail>:nth-child(6){--k:5}#detail>:nth-child(7){--k:6}#detail>:nth-child(n+8){--k:7}
+@keyframes fx-rise{from{opacity:0;translate:0 18px;filter:blur(4px)}}
+/* cambio de imagen en la galería */
+#detail .fx-swap{animation:fx-swap .45s ease both!important;animation-delay:0s!important}
+@keyframes fx-swap{from{opacity:0;filter:blur(6px);scale:1.03}}
+
+/* 3 · FONDO VIVO */
+.fx-sweep{position:fixed;inset:-20%;pointer-events:none;background:linear-gradient(115deg,transparent 42%,rgba(160,240,90,.07) 50%,transparent 58%);animation:fx-sweep 16s ease-in-out infinite alternate}
+@keyframes fx-sweep{from{translate:-50% 0}to{translate:50% 0}}
+.web,#motes{scale:1.08}
+.web{translate:calc(var(--mx,0)*-14px) calc(var(--my,0)*-10px)}
+#motes{translate:calc(var(--mx,0)*-28px) calc(var(--my,0)*-20px)}
+.orb-wrap{translate:calc(var(--mx,0)*14px) calc(var(--my,0)*10px)}
+
+/* 4 · FEEDBACK DEL MENÚ */
+.item .bar{position:relative;overflow:hidden}
+.item.sel .bar::before{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.6) 50%,transparent 65%);translate:-130% 0;animation:fx-sheen 2.4s .3s ease-in-out infinite}
+@keyframes fx-sheen{60%,100%{translate:130% 0}}
+.item.sel .dot::before{content:"";position:absolute;inset:-8px;border-radius:50%;border:2px solid transparent;border-top-color:var(--sel);border-right-color:rgba(210,230,40,.35);animation:fx-spin 1.4s linear infinite}
+@keyframes fx-spin{to{rotate:360deg}}
+.item .dot::after{transition:width .3s}
+.item.sel .dot::after{width:30px}
+.item:active{scale:.97}
+.fx-ripple{position:absolute;inset:16%;border-radius:50%;border:2px solid rgba(190,255,110,.85);pointer-events:none;animation:fx-ripple .9s ease-out forwards}
+@keyframes fx-ripple{to{scale:1.9;opacity:0}}
+
+/* botón de sonido (apagado por defecto) */
+.fx-snd{all:unset;cursor:pointer;position:fixed;top:30px;right:calc(6vw + 4px);z-index:50;padding:7px 14px;font:700 .7rem var(--font);letter-spacing:.14em;color:var(--dim);border:1px solid rgba(110,230,70,.35);background:rgba(5,40,12,.6);clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,0 100%)}
+.fx-snd[aria-pressed=true]{color:#1a2800;background:linear-gradient(#e1ec3c,#a9ba12);border-color:#f0f870}
+.fx-snd:focus-visible{outline:2px solid #fff}
+
+@media (prefers-reduced-motion:reduce){.fx-sweep,.fx-burst,.fx-ripple,.fx-intro{display:none}}
